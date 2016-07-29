@@ -64,7 +64,6 @@ var Game = {
     //Por defecto background inicial Rojo
     background = game.add.tileSprite(0, 0, 800, 600, "backgroundGreen");
     background.fixedToCamera = true;
-
     //init variables
     colorBackground = ["backgroundRed","backgroundBlue","backgroundGreen","backgroundBlack"];
     changeBackground = ["changeRed","changeBlue","changeGreen","changeBlack"];
@@ -87,7 +86,7 @@ var Game = {
     bmd.rect(1*32, 0, 64, 32, color.rgba);
 
     //  Add a Tileset image to the map
-    map.addTilesetImage('tiles', bmd);
+    map.addTilesetImage('tiles', 'FloorTestGreen');
 
     //  Creates a new blank layer and sets the map dimensions.
     //  In this case the map is 40x30 tiles in size and the tiles are 32x32 pixels in size.
@@ -154,7 +153,7 @@ var Game = {
     if(game.camera.bounds.width <= LEVEL_LENGHT*32){
       game.world.setBounds(player.xChange, 0, game.width + player.xChange, game.world.height);
     }
-
+    //background.x = game.camera.bounds.left;
     game.physics.arcade.collide(player, layer);
 
     this.addScore();
@@ -177,6 +176,7 @@ var Game = {
     }
     else if(!player.body.blocked.right){
       iterador = 0;
+      background.tilePosition.x -= 2;
     }
 
     if(iterador == 40){
@@ -248,7 +248,7 @@ var Game = {
               }
             }
             else {
-              if (player.y < 128) { //si el jugador esta arriba entonce hay un 70% de probabilidades de que aparezca un obstaculo a esa altura
+              if (player.y < 128) { //si el jugador esta arriba entonces hay un 70% de probabilidades de que aparezca un obstaculo a esa altura
                 y = game.rnd.integerInRange(1,10);
                 if (y >= 4)
                   y = game.rnd.integerInRange(1, 3)*32;
@@ -317,6 +317,7 @@ var Game = {
     game.physics.arcade.overlap(player, eggs, this.playerEgg, null, this);
     game.physics.arcade.overlap(player, lvlup, this.playerLvlup, null, this);
     game.physics.arcade.overlap(player, floors, this.playerFloorCollision, null, this);
+
   },
 
   playerCollision : function(){
@@ -627,7 +628,7 @@ var Game = {
     marker.x = layer.getTileX(game.input.activePointer.worldX) * 32;
     marker.y = layer.getTileY(game.input.activePointer.worldY) * 32;
 
-    if (game.input.mousePointer.isDown && marker.y > 32 && marker.y < (game.world.height - 32))
+    if (game.input.mousePointer.isDown && marker.y > 64 && marker.y < (game.world.height - 32))
     {
       //Acá utilizar sprite en vez de currenTile
       var tile = map.getTile(layer.getTileX(marker.x), layer.getTileY(marker.y), layer, false)
@@ -689,11 +690,11 @@ var Game = {
     //game.debug.text('Time: ' + timer.seconds , 32, 200);
     //game.debug.body(player);
     //game.debug.body(floors.getFirstAlive());
-    obstacles.forEachAlive(function(obstaclesGroup){
+    /*obstacles.forEachAlive(function(obstaclesGroup){
       obstaclesGroup.forEachAlive(function(obstacle){
         game.debug.body(obstacle);
       }, this);
-    }, this);
+    }, this);*/
     //game.debug.body(obstacleGroup.getFirstAlive());
     //game.debug.body(eggs.getFirstAlive());
     //game.debug.text('MouseX: ' + game.input.activePointer.x , 32, 80);

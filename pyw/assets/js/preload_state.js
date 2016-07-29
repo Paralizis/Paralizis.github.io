@@ -22,6 +22,7 @@ var PreloadState = {
     game.load.image('chamaleonHead', 'assets/images/ChamaleonHead.png');
     game.load.image('backgroundBlue', 'assets/images/backgroundBlue.png');
     game.load.image('backgroundGreen', 'assets/images/backgroundGreen.png');
+    game.load.image('FloorTestGreen', 'assets/images/FloorTest4.png');
     
     game.load.image('changeBlue', 'assets/images/changeBlue.png');
     game.load.image('changeGreen', 'assets/images/changeGreen.png');
