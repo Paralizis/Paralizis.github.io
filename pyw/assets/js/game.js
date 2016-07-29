@@ -176,7 +176,6 @@ var Game = {
     }
     else if(!player.body.blocked.right){
       iterador = 0;
-      background.tilePosition.x -= 2;
     }
 
     if(iterador == 40){
